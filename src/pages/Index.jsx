@@ -7,6 +7,7 @@ const Index = () => {
 
   const handleChatbotToggle = () => {
     setIsChatbotOpen(!isChatbotOpen);
+    console.log("Chatbot open state:", !isChatbotOpen);
   };
 
   useEffect(() => {
