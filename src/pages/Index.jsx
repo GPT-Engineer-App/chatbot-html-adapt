@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Text, VStack, IconButton, Box } from "@chakra-ui/react";
 import { FaComments } from "react-icons/fa";
 
@@ -8,6 +8,22 @@ const Index = () => {
   const handleChatbotToggle = () => {
     setIsChatbotOpen(!isChatbotOpen);
   };
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+    script.type = "text/javascript";
+    script.onload = () => {
+      window.voiceflow.chat.load({
+        verify: {
+          projectID: '661177d3da0ccc92fa634e1e'
+        },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'production'
+      });
+    };
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -26,21 +42,3 @@ const Index = () => {
 };
 
 export default Index;
-
-<script type="text/javascript">
-  (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: {
-          projectID: '661177d3da0ccc92fa634e1e'
-        },
-        url: 'https://general-runtime.voiceflow.com',
-        versionID: 'production'
-      });
-    }
-    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-    v.type = "text/javascript";
-    s.parentNode.insertBefore(v, s);
-  })(document, 'script');
-</script>
